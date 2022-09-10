@@ -31,7 +31,7 @@ class AdminHome extends ConsumerWidget {
         ),
       ),
       body: StreamBuilder<List<Product>>(
-          stream: ref.read(databaseProvider)!.getProducts(),
+          stream: ref.read(databaseProvider)?.getProducts(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.active &&
                 snapshot.data != null) {

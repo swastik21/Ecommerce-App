@@ -12,6 +12,8 @@ class Product {
       required this.imageUrl,
       required this.price});
 
+  double get priceWithTax => price * 1.2;
+
   Map<String, dynamic> toMap(String id) {
     return {
       "id": id,
