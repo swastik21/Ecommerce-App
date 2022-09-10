@@ -72,10 +72,12 @@ class ProductListTile extends StatelessWidget {
                       Text(
                         product.name,
                         textAlign: TextAlign.center,
+                        maxLines: 1,
                         style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       const SizedBox(
