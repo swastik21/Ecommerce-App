@@ -1,7 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
 class Productbanner extends StatelessWidget {
-  const Productbanner({Key? key}) : super(key: key);
+  Productbanner({Key? key}) : super(key: key);
+  final shoes = FirebaseRemoteConfig.instance.getString('shoes');
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +22,24 @@ class Productbanner extends StatelessWidget {
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   "New Release",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "Cool shoes",
-                  style: TextStyle(
+                AutoSizeText(
+                  "Cool $shoes",
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
                   ),
+                  presetFontSizes: const [20, 30],
                 ),
               ],
             ),

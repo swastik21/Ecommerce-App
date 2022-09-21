@@ -25,7 +25,7 @@ class UserHome extends ConsumerWidget {
             const SizedBox(
               height: 20,
             ),
-            const Productbanner(),
+            Productbanner(),
             const SizedBox(
               height: 20,
             ),

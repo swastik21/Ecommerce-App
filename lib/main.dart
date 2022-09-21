@@ -4,6 +4,7 @@ import 'package:ecommerce/app/pages/user/user_home.dart';
 import 'package:ecommerce/app/providers.dart';
 import 'package:ecommerce/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -15,6 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await _initializeRemoteConfig();
   Stripe.publishableKey =
       "pk_test_51LcCJPSJRBzNxiUYID1mEiKvEeriKKYQheK70qbh2fU3IU4OJtQJe0YF3mCVCz6nBLRgwoGmpbbAmlawApLhTdPA009FO2PcES";
   runApp(const ProviderScope(child: MyApp()));
@@ -41,4 +43,22 @@ class MyApp extends ConsumerWidget {
       ),
     );
   }
+}
+
+_initializeRemoteConfig() async {
+  final Map<String, dynamic> defaults = <String, dynamic>{
+    'shoes': "shoes",
+  };
+
+  final firebaseRemoteConfig = FirebaseRemoteConfig.instance;
+
+  await firebaseRemoteConfig.setDefaults(defaults);
+
+  await firebaseRemoteConfig.setConfigSettings(
+    RemoteConfigSettings(
+        fetchTimeout: const Duration(seconds: 10),
+        minimumFetchInterval: Duration.zero),
+  );
+
+  await firebaseRemoteConfig.fetchAndActivate();
 }
