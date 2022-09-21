@@ -47,7 +47,9 @@ class MyApp extends ConsumerWidget {
 
 _initializeRemoteConfig() async {
   final Map<String, dynamic> defaults = <String, dynamic>{
-    'shoes': "shoes",
+    '0': 'Sneakers',
+    '1': 'Flip-Flops',
+    '2': 'Crocs'
   };
 
   final firebaseRemoteConfig = FirebaseRemoteConfig.instance;
